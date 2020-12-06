@@ -1,0 +1,92 @@
+
+<div class="container">
+
+    <h1>Faire un envoie</h1>
+
+  
+
+    <a href="#" routerLink="/envoie" class="btn btn-primary">Back</a>
+
+        
+
+    <form>
+
+        <div class="form-group">
+
+            <label for="montant">Montant:</label>
+
+            <input   [(ngModel)]="envoie.montant" id="montant" type="number" class="form-control"/>
+
+        </div>
+
+  
+
+        <div class="form-group">
+
+            <label for="date">Date D'envoie</label>
+
+            <input [(ngModel)]="envoie.date" id="date"  type="date" class="form-control" required/>
+
+        </div>
+
+        <div class="form-group">
+
+            <label for="nomE">Nom Emetteur</label>
+
+            <input [(ngModel)]="envoie.emetteur.nomE" id="nomE"  type="text" class="form-control" required />
+
+           
+
+        </div>
+        <div class="form-group">
+
+            <label for="¨prenomE">Prenom Emetteur</label>
+
+            <input [(ngModel)]="envoie.emetteur.prenomE"  id="prenomE"  type="text" class="form-control" />
+
+        </div>
+        <div class="form-group">
+
+            <label for="cinE">CIN</label>
+
+            <input [(ngModel)]="envoie.emetteur.cinE"  id="cinE"  type="text" class="form-control" />
+
+        </div>
+        <div class="form-group">
+
+            <label for="telE">telephone Emetteur</label>
+
+            <input  [(ngModel)]="envoie.emetteur.telE"  id="telE"  type="text" class="form-control" />   
+
+        </div>
+
+        <div class="form-group">
+
+            <label for="nomE">Nom Recepteur</label>
+
+            <input [(ngModel)]="envoie.recepteur.nomR"  id="nomR"  type="text" class="form-control" />
+
+        </div>
+        <div class="form-group">
+
+            <label for="¨prenomE">Prenom Recepteur</label>
+
+            <input  [(ngModel)]="envoie.recepteur.prenomR" id="prenomR"  type="text" class="form-control" />
+
+
+        </div>
+        <div class="form-group">
+
+            <label for="telR">telephone Emetteur</label>
+
+            <input  [(ngModel)]="envoie.recepteur.telR" id="telR"  type="text" class="form-control" />
+
+        </div>
+
+      
+
+        <button class="btn btn-primary" type="submit "  (click)="submit()">Submit</button>
+
+    </form>
+
+</div>
