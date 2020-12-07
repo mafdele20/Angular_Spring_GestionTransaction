@@ -9,13 +9,21 @@
 
         
 
-    <form>
+    <form [formGroup]="form" (ngSubmit)="submit()">
+
+  
 
         <div class="form-group">
 
             <label for="montant">Montant:</label>
 
-            <input   [(ngModel)]="envoie.montant" id="montant" type="number" class="form-control"/>
+            <input  formControlName="montant" id="montant" type="number" class="form-control"/>
+
+            <div *ngIf="f.montant.touched && f.montant.invalid" class="alert alert-danger">
+
+                <div *ngIf="f.montant.errors.required">montant is required.</div>
+
+            </div>
 
         </div>
 
@@ -25,7 +33,13 @@
 
             <label for="date">Date D'envoie</label>
 
-            <input [(ngModel)]="envoie.date" id="date"  type="date" class="form-control" required/>
+            <input formControlName="date"  id="date"  type="date" class="form-control" />
+
+            <div *ngIf="f.date.touched && f.date.invalid" class="alert alert-danger">
+
+                <div *ngIf="f.date.errors.required">date is required.</div>
+
+            </div>
 
         </div>
 
@@ -33,59 +47,98 @@
 
             <label for="nomE">Nom Emetteur</label>
 
-            <input [(ngModel)]="envoie.emetteur.nomE" id="nomE"  type="text" class="form-control" required />
+            <input formControlName="nomE"  id="nomE"  type="text" class="form-control" />
 
-           
+            <div *ngIf="f.nomE.touched && f.nomE.invalid" class="alert alert-danger">
+
+                <div *ngIf="f.nomE.errors.required">date is required.</div>
+
+            </div>
 
         </div>
         <div class="form-group">
 
             <label for="¨prenomE">Prenom Emetteur</label>
 
-            <input [(ngModel)]="envoie.emetteur.prenomE"  id="prenomE"  type="text" class="form-control" />
+            <input formControlName="prenomE"  id="prenomE"  type="text" class="form-control" />
+
+            <div *ngIf="f.prenomE.touched && f.prenomE.invalid" class="alert alert-danger">
+
+                <div *ngIf="f.prenomE.errors.required">date is required.</div>
+
+            </div>
 
         </div>
         <div class="form-group">
 
             <label for="cinE">CIN</label>
 
-            <input [(ngModel)]="envoie.emetteur.cinE"  id="cinE"  type="text" class="form-control" />
+            <input formControlName="cinE"  id="cinE"  type="text" class="form-control" />
+
+            <div *ngIf="f.cinE.touched && f.cinE.invalid" class="alert alert-danger">
+
+                <div *ngIf="f.cinE.errors.required">date is required.</div>
+
+            </div>
 
         </div>
         <div class="form-group">
 
             <label for="telE">telephone Emetteur</label>
 
-            <input  [(ngModel)]="envoie.emetteur.telE"  id="telE"  type="text" class="form-control" />   
+            <input formControlName="telE"  id="telE"  type="text" class="form-control" />
+
+            <div *ngIf="f.telE.touched && f.telE.invalid" class="alert alert-danger">
+
+                <div *ngIf="f.telE.errors.required">date is required.</div>
+
+            </div>
 
         </div>
 
         <div class="form-group">
 
-            <label for="nomE">Nom Recepteur</label>
+            <label for="nomR">Nom Recepteur</label>
 
-            <input [(ngModel)]="envoie.recepteur.nomR"  id="nomR"  type="text" class="form-control" />
+            <input formControlName="nomR"  id="nomR"  type="text" class="form-control" />
+
+            <div *ngIf="f.nomR.touched && f.nomR.invalid" class="alert alert-danger">
+
+                <div *ngIf="f.nomR.errors.required">date is required.</div>
+
+            </div>
 
         </div>
         <div class="form-group">
 
-            <label for="¨prenomE">Prenom Recepteur</label>
+            <label for="¨prenomr">Prenom Recepteur</label>
 
-            <input  [(ngModel)]="envoie.recepteur.prenomR" id="prenomR"  type="text" class="form-control" />
+            <input formControlName="prenomR"  id="prenomR"  type="text" class="form-control" />
 
+            <div *ngIf="f.prenomR.touched && f.prenomR.invalid" class="alert alert-danger">
+
+                <div *ngIf="f.prenomR.errors.required">date is required.</div>
+
+            </div>
 
         </div>
         <div class="form-group">
 
             <label for="telR">telephone Emetteur</label>
 
-            <input  [(ngModel)]="envoie.recepteur.telR" id="telR"  type="text" class="form-control" />
+            <input formControlName="telR"  id="telR"  type="text" class="form-control" />
+
+            <div *ngIf="f.telR.touched && f.telR.invalid" class="alert alert-danger">
+
+                <div *ngIf="f.telR.errors.required">date is required.</div>
+
+            </div>
 
         </div>
 
       
 
-        <button class="btn btn-primary" type="submit "  (click)="submit()">Submit</button>
+        <button class="btn btn-primary" type="submit" [disabled]="!form.valid">Submit</button>
 
     </form>
 

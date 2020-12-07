@@ -5,8 +5,7 @@ import { FormGroup, FormControl, Validators} from '@angular/forms';
 
 import { EnvoieService } from '../services/envoie.service';
 import { Envoie } from '../model/envoie.model';
-import { Emetteur } from '../model/emetteur.model';
-import { Recepteur } from '../model/Recepteur.model';
+
 
 
 @Component({
@@ -15,25 +14,8 @@ import { Recepteur } from '../model/Recepteur.model';
   styleUrls: ['./faire-envoie.component.css']
 })
 export class FaireEnvoieComponent implements OnInit {
-   
-  envoie = {
-    montant :"" ,
-    date : "",
-    emetteur : {
-      nomE : "",
-      prenomE : "",
-      telE : "",
-    },
-    recepteur : {
-      cinE :"",
-      nomR : "",
-      prenomR : "",
-      telR : "",
-    }
-   
-   
-  }
-   
+
+  form  : FormGroup ;
 
   constructor( public envoieService : EnvoieService,private router: Router ) { 
        
@@ -42,18 +24,54 @@ export class FaireEnvoieComponent implements OnInit {
 
 
   ngOnInit(): void {
-     
+      this.form = new FormGroup({
+        montant: new FormControl('', [Validators.required]),
+
+        date: new FormControl('', Validators.required),
+
+        nomE: new FormControl('', [Validators.required]),
+        prenomE: new FormControl('', Validators.required),
+        telE: new FormControl('', [Validators.required]),
+
+        cinE: new FormControl('', Validators.required),
+        nomR: new FormControl('', Validators.required),
+        prenomR: new FormControl('', Validators.required),
+        telR: new FormControl('', [Validators.required]),
+    });
   }
 
 
     
+  get f(){
 
+    return this.form.controls;
+
+  }
   submit(){
-     
-    console.log(this.envoie);
+    let envoie = {} as Envoie;
 
-    this.envoieService.faireEnvoie(this.envoie).subscribe(res => {
+    {
+      envoie.date = this.form.value.date,
+      envoie.montant =this.form.value.montant,
+      envoie.emetteur = {
+         nomE : this.form.value.nomE,
+         prenomE : this.form.value.prenomE,
+         telE : this.form.value.telE,
+         cinE : this.form.value.cinE
+      },
+      envoie.recepteur = {
 
+           nomR : this.form.value.nomR,
+           prenomR :this.form.value.prenomR,
+           telR : this.form.value.telR
+      }
+  }
+    console.log(envoie);
+
+
+    this.envoieService.faireEnvoie(envoie).subscribe(res => {
+
+      
          console.log('Envoie created successfully!');
 
          this.router.navigateByUrl('envoies');
